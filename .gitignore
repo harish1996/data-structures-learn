@@ -1,0 +1,7 @@
+
+*.o
+docs/
+include/*.c
+tagfile
+tags
+doxyfile
