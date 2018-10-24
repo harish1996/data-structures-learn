@@ -52,7 +52,7 @@ int swapUp( a_heap_t *heap, int k )
 
 int swapDown( a_heap_t *heap, int k )
 {
-	int max;
+	int min;
 
 	if( !heap )
 		return -1;
@@ -65,22 +65,22 @@ int swapDown( a_heap_t *heap, int k )
 		return 1;
 
 	if( heap->comparator( heap->array , k , 2*k ) )
-		max = k;
+		min = k;
 	else
-		max = 2*k;
+		min = 2*k;
 
-	if( 2*k + 1 < heap->size && !heap->comparator( heap->array , max , 2*k + 1 ) )
-		max = 2*k + 1;
+	if( 2*k + 1 < heap->size && !heap->comparator( heap->array , min , 2*k + 1 ) )
+		min = 2*k + 1;
 	
-	if( max != k ){
-		swap( heap , k , max );
-		return swapDown( heap , max );
+	if( min != k ){
+		swap( heap , k , min );
+		return swapDown( heap , min );
 	}
 	else
 		return 1;
 }
 
-int ExtractMax( a_heap_t *heap, void *element )
+int ExtractMin( a_heap_t *heap, void *element )
 {
 	if( !heap )
 		return -1;
