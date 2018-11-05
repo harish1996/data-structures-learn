@@ -10,11 +10,12 @@ int s_queue_create_queue( s_queue_t *queue, size_t element_size )
 
 int s_enqueue( s_queue_t *queue, void *object )
 {
-	if( push( &(queue->enqueue_stack) , object ) ){
-		return 1;
-	}
-	else
-		return 0;
+	return push( &(queue->enqueue_stack) , object );
+}
+
+int s_add_to_front( s_queue_t *queue, void *object )
+{
+	return push( &(queue->dequeue_stack), object );
 }
 
 int s_dequeue( s_queue_t *queue, void *object )

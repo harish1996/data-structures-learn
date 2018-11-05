@@ -49,6 +49,18 @@ int s_queue_create_queue( s_queue_t *queue, size_t element_size );
 int s_enqueue( s_queue_t *queue, void *object );
 
 /**
+ * @brief Add to front
+ *
+ * Adds an element in the front of the queue itself instead of at the back ( VIP pass )
+ *
+ * @param queue Queue Descriptor
+ * @param object Object to be enqueued
+ *
+ * @return 1 on success , 0 on failure ( Stack push failure )
+ */
+int s_add_to_front( s_queue_t *queue, void *object );
+
+/**
  * @brief Dequeue
  *
  * Dequeue element from the queue
