@@ -29,5 +29,8 @@ min_heap.a: ${min_heap_DEPS}
 trie.a: ${trie_DEPS}
 	ar cr $@ $^
 
+clean:
+	rm *.a
+	rm *.o
 %.o : %.c
 	gcc $^ -c -o $@ -g3 
