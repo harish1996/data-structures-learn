@@ -4,8 +4,9 @@ input_DEPS= input.o
 min_heap_DEPS= min_heap.o
 min_max_heap_DEPS= min_max_heap.o
 llist_DEPS= llist.o
+trie_DEPS= trie.o llist.o
 
-all : stack.a input.a s_queue.a min_heap.a min_max_heap.a llist.a
+all : stack.a input.a s_queue.a min_heap.a min_max_heap.a llist.a trie.a
 
 stack.a : ${stack_DEPS}
 	ar cr $@ $^
@@ -23,6 +24,9 @@ llist.a: ${llist_DEPS}
 	ar cr $@ $^
 
 min_heap.a: ${min_heap_DEPS}
+	ar cr $@ $^
+
+trie.a: ${trie_DEPS}
 	ar cr $@ $^
 
 %.o : %.c
