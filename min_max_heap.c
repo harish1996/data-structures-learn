@@ -35,6 +35,17 @@ int init_minmax_heap( a_minmax_heap_t *heap, size_t element_size, int (*compare)
 	return 0;
 }
 
+void delete_minmax_heap( a_minmax_heap_t *heap )
+{
+	if( heap ){
+		if( heap->array ){
+			free(heap->array);
+		}
+		heap->size = 0;
+		heap->capacity = 0;
+	}
+}
+
 static int swap( a_minmax_heap_t *heap, int i, int j )
 {
 	void *ith = ((char*)heap->array + i * heap->element_size );
@@ -308,15 +319,17 @@ int FindMax_minmax( a_minmax_heap_t *heap, void *element )
 	if( !element )
 		return -2;
 
-	if( heap->size > 2 ){
+	if( heap->size >= 2 ){
 		if( heap->size > 3 ){
 			if( heap->comparator( _arr(3), _arr(2) ) )
 				max_index = 3;
 			else
 				max_index = 2;
 		}
-		else
+		else if( heap->size == 3 )
 			max_index = 2;
+		else
+			max_index = 1;
 		memcpy( element, _arr(max_index), heap->element_size );
 		return 1;
 	}
